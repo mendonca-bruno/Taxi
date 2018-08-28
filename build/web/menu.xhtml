@@ -1,0 +1,20 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="template.xhtml">
+        <ui:define name="body">
+            <h:form>
+                <p:outputPanel style="width: 100%; text-align: right" >
+                    <h:commandLink value="sair" action="index" />
+                    <br/>
+                    <p:separator/>
+                </p:outputPanel>
+                <p/>
+                <h:link outcome="cliente/clienteGerenciar.xhtml" value="Gerenciar usuários"/>
+                <p/>
+                <h:link outcome="motocicleta/motoGerenciar" value="Gerenciar veículos"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

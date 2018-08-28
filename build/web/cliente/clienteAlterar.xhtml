@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition>
+
+        <p:dialog id="editarClienteDlg" appendTo="@(body)" closable="false"
+                  modal="true" resizable="true" 
+                  widgetVar="editarClienteDlg" header="Editar cliente" >
+            <h:form id="formEditarCliente">
+                <p:messages closable="true" autoUpdate="true" showIcon="false" />               
+                <h:panelGrid columns="2" >                    
+                    <p:outputLabel value="Nome:" />
+                    <p:inputText value="#{clienteGerenciar.temp.nome}" 
+                                 maxlength="50" required="true" 
+                                 requiredMessage="O campo NOME é obrigatório."/>
+                    <p:outputLabel value="Login: " />
+                    <p:inputText value="#{clienteGerenciar.temp.login}"  
+                                 maxlength="30" required="true" 
+                                 requiredMessage="O campo UNIDADE é obrigatório."/>       
+                </h:panelGrid>
+                <p:outputPanel style="width: 100%; text-align:center" layout="block">
+                    <p:commandButton value="Cancelar" icon="ui-icon-close"
+                                     oncomplete="PF('editarClienteDlg').hide()" immediate="true" 
+                                     update=":formPrincipal, :editarClienteDlg"/>
+                    <p:commandButton value="Salvar" icon="ui-icon-check"
+                                     action="#{ClienteGerenciar.alterarCliente()}" immediate="false"
+                                     oncomplete="PF('editarClienteDlg').hide()" 
+                                     update=":formPrincipal, :editarClienteDlg"/>
+                </p:outputPanel>
+            </h:form>
+        </p:dialog>
+    </ui:composition>
+</html>

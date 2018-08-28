@@ -1,0 +1,82 @@
+@charset "utf-8";
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-size: 15px;
+    font-family: Calibri;
+    margin: 20px;
+    
+}
+
+h1 {
+    font-family: Calibri, "Arial";
+    font-size: 30px;
+    font-weight: 500;
+    text-align: center;
+}
+
+a {
+   text-decoration: none; 
+}
+
+.main { 
+margin: 0 auto; 
+width:250px;
+}
+
+.entrar {
+    text-align: center;
+}
+
+.ui-panelgrid-header {
+    font-size: 17px !important;
+    font-family: Arial;
+}
+
+.ui-panelgrid-footer {
+    font-size: 17px !important;
+    font-family: Arial;
+}
+
+.ui-panelgrid  {
+    font-family: Arial;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: 1fr 500px 500px 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+        ". title title ."
+        ". header header ."
+        ". content content ."
+        ". footer footer .";
+}
+
+.title{
+    grid-area: title;
+}
+
+.header{
+    grid-area: header;
+}
+
+.content{
+    grid-area: content;
+}
+
+.footer{
+    grid-area: footer;
+}
+
+.grid div:nth-child(even){
+    
+}
+
+.grid div:nth-child(odd){
+    
+}
