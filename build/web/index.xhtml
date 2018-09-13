@@ -15,32 +15,33 @@
                 
                 <h1>Carrara's Moto-Táxi</h1>
             </div>
-            <div class="header">Cadastrar-se | Fazer Login </div>
+            <div class="header"><h:link outcome="/cliente/clienteCadastro" value="Cadastrar" /></div>
             <div class="content">
    
        
                 <div class="main">
                 <p/> 
                 <h:form id="formLogin">
+                    <h1>Area Cliente</h1>
                     <p:panelGrid columns="2">
-                        <f:facet name="header" class="admlog">
-                            Login administrador
+                        <f:facet name="header" class="clilog">
+                            Login Cliente
                         </f:facet>
                         
-                        <h:outputLabel value="Usuário: "/>
-                            <p:inputText id="campoLogin" size="14" value="#{indexControle.adm.login}" 
-                                         maxlength="15" required="true" requiredMessage="Nome obrigatório" >
+                        <h:outputLabel value="Login: "/>
+                        <p:inputText id="campoLogin" size="14" value="#{indexCliente.cliente.login}" 
+                                         maxlength="15" required="true" requiredMessage="Nome de usuário obrigatório" >
                             </p:inputText>
                         
                         <h:outputLabel value="Senha: "/>
                             <p:password  feedback="false" size="14"  maxlength="10"
-                                         value="#{indexControle.adm.senha}"
+                                         value="#{indexCliente.cliente.senha}"
                                          required="true" requiredMessage="Senha obrigatória" />
                             
                             <f:facet name="footer">
                                 <div class="entrar">
                             <p:commandButton value="Entrar" icon="ui-icon-check" ajax="false"
-                                             action="#{indexControle.autenticar()}" styleClass="ui-state-hover"/> 
+                                             action="#{indexCliente.autenticar()}" styleClass="ui-state-hover"/> 
 
                             <p:messages showIcon="false" closable="true" />
                             </div>
@@ -50,7 +51,7 @@
                 </div>
         
             </div>
-            <div class="footer">Carrara's Moto-Táxi | PC</div>
+            <div class="footer">Carrara's Moto-Táxi | <h:link outcome="/loginAdm" value="PC" /></div>
         </div>
     </h:body>
 </html>

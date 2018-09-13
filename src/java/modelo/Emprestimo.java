@@ -7,6 +7,7 @@ package modelo;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -88,5 +89,52 @@ public class Emprestimo implements Serializable {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 73 * hash + Objects.hashCode(this.id);
+        hash = 73 * hash + Objects.hashCode(this.retirada);
+        hash = 73 * hash + this.minGastos;
+        hash = 73 * hash + Objects.hashCode(this.motocicleta);
+        hash = 73 * hash + Objects.hashCode(this.cliente);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Emprestimo other = (Emprestimo) obj;
+        if (this.minGastos != other.minGastos) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.retirada, other.retirada)) {
+            return false;
+        }
+        if (!Objects.equals(this.motocicleta, other.motocicleta)) {
+            return false;
+        }
+        if (!Objects.equals(this.cliente, other.cliente)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Emprestimo{" + "id=" + id + ", retirada=" + retirada + ", minGastos=" + minGastos + ", motocicleta=" + motocicleta + ", cliente=" + cliente + '}';
+    }
+    
 
 }

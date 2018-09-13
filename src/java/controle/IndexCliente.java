@@ -6,6 +6,7 @@
 package controle;
 
 import dao.AdministradorDao;
+import dao.Dao;
 import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -14,25 +15,26 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import modelo.Administrador;
+import modelo.Cliente;
 
 /**
  * Controlador para página de index
  * @author José
  */
-@ManagedBean (name="indexControle")
+@ManagedBean (name="indexCliente")
 @ViewScoped
-public class IndexControle implements Serializable{
-    private Administrador adm;
+public class IndexCliente implements Serializable{
+    private Cliente cli;
     
-    public IndexControle(){
-        adm = new Administrador();
+    public IndexCliente(){
+        cli = new Cliente();
     }
     
     public String autenticar(){
-        this.adm.setLogin(adm.getLogin());
-        AdministradorDao dao = new AdministradorDao();
-        Administrador temp;
-        temp = dao.autenticar(adm);
+        this.cli.setLogin(cli.getLogin());
+        Dao<Cliente> dao = new Dao(Cliente.class);
+        Cliente temp;
+        temp = dao.autenticarCliente(cli);
         if (temp == null){  // se houver erro, método autenticar no dao retorna null
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuário ou senha inválidos", null));
@@ -42,15 +44,15 @@ public class IndexControle implements Serializable{
         FacesContext context = FacesContext.getCurrentInstance();
         ExternalContext ectx = context.getExternalContext();
         HttpSession session = (HttpSession) ectx.getSession(true);
-        session.setAttribute("admLogado", temp);        
-        return "menu";    // menu.xhtml
+        session.setAttribute("usuarioLogado", temp);        
+        return "menuCliente";    // menu.xhtml
     }
     
-      public Administrador getAdm() {
-        return adm;
+      public Cliente getCliente() {
+        return cli;
     }
 
-    public void setAdm(Administrador adm) {
-        this.adm = adm;
+    public void setCliente(Cliente cli) {
+        this.cli = cli;
     }
 }

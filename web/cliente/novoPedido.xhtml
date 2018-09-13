@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <h:outputStylesheet library="css" name="file.css"/>
+        <title>Gerenciamento de Veículos</title>
+    </h:head>
+    <h:body>
+        <div class="grid">
+            <div class="title">                
+                <h1>Carrara's Moto-Táxi</h1>
+            </div>
+            <div class="header"><h:link outcome="/menuCliente" value="Voltar" /> </div>
+            <div class="content">
+                <h:form id="formPedido">
+                    <p:panelGrid columns="2">
+                        <f:facet name="header" class="admlog">
+                            Realizar pedido
+                        </f:facet>
+                        
+                        <h:outputLabel value="Digite seu login "/>
+                        <p:inputText id="campoLogin" value="#{PedidoGerenciar.novo.login}" 
+                                     maxlength="50" 
+                                     required="true" requiredMessage="Campo obrigatório" > 
+                        </p:inputText>
+                        
+                        <p:outputLabel value="Digite o endereço de partida: "/>
+                        <p:inputText value="#{PedidoGerenciar.novo.origem}" maxlength="30"
+                                     required="true" requiredMessage="Campo obrigatório"/>
+                        
+                        
+                        <p:outputLabel value="Digite o endereço do destino: "/>
+                        <p:inputText value="#{PedidoGerenciar.novo.destino}" maxlength="30"
+                                     required="true" requiredMessage="Campo obrigatório"/>
+                            
+                            <f:facet name="footer">
+                                <div class="entrar">
+                            <p:commandButton value="Cadastrar pedido" icon="ui-icon-check" ajax="false"
+                                             action="#{PedidoGerenciar.inserirPedido()}" styleClass="ui-state-hover"/> 
+
+                            <p:messages showIcon="false" closable="true" />
+                            </div>
+                            </f:facet>
+                    </p:panelGrid>
+                </h:form>
+            </div>
+        </div>
+    </h:body>
+</html>

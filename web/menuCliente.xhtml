@@ -1,0 +1,25 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="template.xhtml">
+        <ui:define name="body">
+            <h:form>
+                <p:outputPanel style="width: 100%; text-align: right" >
+                    <h:commandLink value="sair" action="index" />
+                    <br/>
+                    <p:separator/>
+                </p:outputPanel>
+                <p/>
+                <div class="grid">
+                    <div class="header">
+                        <p:button value="Pedir moto" icon="ui-icon-plus" outcome="/cliente/novoPedido.xhtml"></p:button>
+                        
+                    </div>
+                    
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

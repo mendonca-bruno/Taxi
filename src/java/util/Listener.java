@@ -12,14 +12,19 @@ import javax.faces.event.PhaseId;
 import javax.faces.event.PhaseListener;
 import javax.servlet.http.HttpSession;
 import modelo.Administrador;
-import modelo.Cliente;
 
-public class FiltroAutenticacao implements PhaseListener {
+/**
+ *
+ * @author WinSeven
+ */
+public class Listener implements PhaseListener {
+
     @Override
     public void afterPhase(PhaseEvent event) {
         FacesContext facesContext = event.getFacesContext();
         HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
         String pagina = facesContext.getViewRoot().getViewId();
+        
         if (pagina.contains("/index")) {
             return;
         }
@@ -30,25 +35,23 @@ public class FiltroAutenticacao implements PhaseListener {
             return;
         }
         
-        Cliente usuarioLogado = (Cliente) session.getAttribute("usuarioLogado");
+        Administrador admLogado = (Administrador) session.getAttribute("admLogado");
         
-        if (usuarioLogado == null) {
+        if (admLogado == null) {
             NavigationHandler nh = facesContext.getApplication().getNavigationHandler();
             nh.handleNavigation(facesContext, null, "/index?faces-redirect=true");
             facesContext.renderResponse();
         }
-        
     }
 
     @Override
-    public void beforePhase(PhaseEvent event) {        
-
+    public void beforePhase(PhaseEvent event) {
+        
     }
 
     @Override
     public PhaseId getPhaseId() {
         return PhaseId.RESTORE_VIEW; 
     }
-
+    
 }
-

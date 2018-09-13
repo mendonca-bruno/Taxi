@@ -5,15 +5,27 @@
     <ui:composition template="template.xhtml">
         <ui:define name="body">
             <h:form>
+                
                 <p:outputPanel style="width: 100%; text-align: right" >
                     <h:commandLink value="sair" action="index" />
                     <br/>
                     <p:separator/>
                 </p:outputPanel>
-                <p/>
-                <h:link outcome="cliente/clienteGerenciar.xhtml" value="Gerenciar usuários"/>
-                <p/>
-                <h:link outcome="motocicleta/motoGerenciar" value="Gerenciar veículos"/>
+                
+                <p:panelGrid columns="4">
+                <p:button value="Gerenciar usuários" icon="ui-icon-gear" outcome="cliente/clienteGerenciar.xhtml"></p:button>           
+                
+                
+                
+                <p:button value="Gerenciar motocicletas" icon="ui-icon-gear" outcome="motocicleta/motoGerenciar"></p:button>             
+                
+                
+                
+                <p:button value="Visualizar pedidos" icon="ui-icon-search" outcome="cliente/pedidos"></p:button>
+                
+                
+                <p:button value="Gerenciar Motocicletas" icon="ui-icon-gear" outcome="motocicleta/motocicletaEdit.xhtml"></p:button>
+                </p:panelGrid>
             </h:form>
         </ui:define>
     </ui:composition>

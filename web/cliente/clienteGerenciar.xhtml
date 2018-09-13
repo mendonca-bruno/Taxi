@@ -23,6 +23,7 @@
                                action="#{ClienteGerenciar.abrirPopupNovo(user)}"
                                update="@form, :popupNovo"/>
                 <p/>
+                
                 <p:dataTable id="tabelaClientes" emptyMessage="Nenhum Cliente cadastrado" 
                              resizableColumns="true" tableStyle="width:auto"
                              var="user" value="#{ClienteGerenciar.clientes}">
@@ -72,6 +73,9 @@
                         <p:outputLabel value="Login: "/>
                         <p:inputText value="#{ClienteGerenciar.novo.login}" maxlength="30"
                                      required="true" requiredMessage="Login obrigatório"/>
+                        <p:outputLabel value="Senha: "/>
+                        <p:password value="#{ClienteGerenciar.novo.senha}" maxlength="30"
+                                     required="true" requiredMessage="Senha obrigatória"/>
                     </h:panelGrid>
                     <p:outputPanel style="width: 100%; text-align:center" layout="block">
                         <p:commandButton value="Cancelar" action="#{ClienteGerenciar.fecharPopupNovo()}"

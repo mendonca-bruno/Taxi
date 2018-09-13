@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <h:outputStylesheet library="css" name="file.css"/>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Motos</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+            <p/>    
+            <h:form id="formPrincipal">
+                <h:link outcome="/menu" value="Voltar" />
+                <p/>
+                <p:commandLink styleClass="botaoLink" value="Cadastrar nova Motocicleta"                 
+                               action="#{MotoGerenciar.abrirPopupNovo(user)}"
+                               update="@form, :popupNovo"/>
+                <p/>
+                
+                <p:dataTable id="tabelaClientes" emptyMessage="Nenhuma moto cadastrada" 
+                             resizableColumns="true" tableStyle="width:auto"
+                             var="user" value="#{MotoGerenciar.motos}">
+                    <p:column headerText="Marca:"  style="text-align: right">
+                        <h:outputText value="#{user.marca}"/>
+                    </p:column>
+                    <p:column headerText="Modelo:">
+                        <h:outputText value="#{user.modelo}"/>
+                    </p:column>
+                    <p:column headerText="Placa: ">
+                        <h:outputText value="#{user.placa}"/>
+                    </p:column  >
+                    <p:column headerText=" " style="text-align: center">
+                        <p:commandLink value="excluir"  immediate="true" 
+                                       action="#{MotoGerenciar.excluirMoto(user)}"
+                                       update="@form">
+                            <p:confirm header="Excluir" message="Você tem certeza que deseja excluir esta Moto?"
+                                       icon="ui-icon-alert"/>
+                        </p:commandLink>
+                    </p:column>
+                </p:dataTable>
+                
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                    <p:outputPanel style="width: 100%; text-align:center" layout="block"> 
+                        <p:commandButton value="sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                        <p:commandButton value="não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:outputPanel>
+                </p:confirmDialog>
+            </h:form>
+            <!-- novo aluno  -->
+            <p:dialog closable="true" modal="true" header="Nova Moto" id="popupNovo"  
+                      widgetVar="popupNovo"  visible="#{MotoGerenciar.mostraPopupNovo}"  >
+                <h:form id="formIncluirMoto" >
+                    <h:panelGrid columns="2">
+                        <p:outputLabel value="Marca: "/>
+                        <p:inputText id="campoLogin" value="#{MotoGerenciar.novo.marca}" 
+                                     maxlength="50" 
+                                     required="true" requiredMessage="Marca obrigatória" > 
+                        </p:inputText>
+                        <p:outputLabel value="Modelo: "/>
+                        <p:inputText value="#{MotoGerenciar.novo.modelo}" maxlength="30"
+                                     required="true" requiredMessage="Modelo obrigatório"/>
+                        <p:outputLabel value="Placa: "/>
+                        <p:inputText value="#{MotoGerenciar.novo.placa}" maxlength="30"
+                                     required="true" requiredMessage="Placa obrigatória"/>
+                    </h:panelGrid>
+                    <p:outputPanel style="width: 100%; text-align:center" layout="block">
+                        <p:commandButton value="Cancelar" action="#{MotoGerenciar.fecharPopupNovo()}"
+                                         update=":popupNovo" immediate="true" />
+                        <p:commandButton value="Confirmar" action="#{MotoGerenciar.inserirCliente()}" 
+                                         update=":popupNovo, :formPrincipal"/>                           
+                    </p:outputPanel>
+                    <h:panelGrid columns="1">
+                        <p:messages showIcon="false" />
+                    </h:panelGrid>   
+                </h:form>
+            </p:dialog>
+            
+        </h:body>
+    </f:view>
+</html>

@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaQuery;
+import modelo.Administrador;
 import modelo.Cliente;
 import modelo.Motocicleta;
 import util.JpaUtil;
@@ -99,6 +100,24 @@ public class Dao <T> implements Serializable {
         } finally {
             manager.close();
         }
+        return temp;
+    }
+    public Cliente autenticarCliente(Cliente cli){
+        Cliente temp = null; // administrador retornado na consulta ao banco
+        EntityManager manager = JpaUtil.getEntityManager();
+        TypedQuery<Cliente> query = manager.createQuery("SELECT a FROM Cliente a WHERE a.login = :login AND a.senha = :senha",
+                Cliente.class); 
+        query.setParameter("login", cli.getLogin());
+        query.setParameter("senha", cli.getSenha());
+        try{
+            temp = query.getSingleResult(); 
+        }
+        catch(Exception e){ 
+            
+        }     //aqui poderia haver um tratamento de exceção mais decente
+        finally{
+            manager.close();
+        }        
         return temp;
     }
 }

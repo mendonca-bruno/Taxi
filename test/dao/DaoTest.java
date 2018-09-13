@@ -6,6 +6,7 @@
 package dao;
 
 import modelo.Administrador;
+import modelo.Pedido;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -40,9 +41,9 @@ public class DaoTest {
 
     @Test
     public void testInserir() {
-        Dao<Administrador> dao = new Dao(Administrador.class);
-        Administrador adm = new Administrador("adm2", "Bruno", "admin");
-        dao.inserir(adm);
+        Dao<Pedido> dao = new Dao(Pedido.class);
+        Pedido p = new Pedido("Teste", "Teste", "teste");
+        dao.inserir(p);
     }
     
 }
